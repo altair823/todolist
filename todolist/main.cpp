@@ -6,9 +6,12 @@
 //
 
 #include <iostream>
+#include "dataStructure.hpp"
+
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    work a;
+    a.set_num(1);
+    a.set_todo("test");
+    a.test();
 }

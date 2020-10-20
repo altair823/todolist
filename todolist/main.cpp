@@ -6,9 +6,7 @@
 //
 
 #include <iostream>
-#include "dataStructure.hpp"
-#include "consoleStream.hpp"
-#include "fileRecord.hpp"
+#include "handler.hpp"
 
 
 int main(int argc, const char * argv[]) {
@@ -17,8 +15,6 @@ int main(int argc, const char * argv[]) {
     a.set_todo("test");
     a.test_print();
     
-    std::fstream my;
-    my.open("test.txt");
-    my<<"this is test message";
-    my.close();
+    handler();
+
 }

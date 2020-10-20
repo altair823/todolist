@@ -8,6 +8,12 @@
 #ifndef consoleStream_hpp
 #define consoleStream_hpp
 
-#include <stdio.h>
+#include <iostream>
+
+class console_stream{
+    
+public:
+    console_stream();
+};
 
 #endif /* consoleStream_hpp */

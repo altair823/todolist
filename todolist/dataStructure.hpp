@@ -27,10 +27,15 @@ private:
     std::string work_string;
 public:
     
+    work(int number, std::string todo, int urgency = 2, int importance = 2);
+    
     //할 일을 분류하기 위한 기본적인 정보를 저장하는 함수
     void set_num(int);
     void set_urgency(int);
     void set_importance(int);
     void set_todo(std::string);
+    
+    //테스트용 함수들
+    void test_print();
 };
 #endif /* dataStructure_hpp */

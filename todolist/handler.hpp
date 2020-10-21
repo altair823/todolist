@@ -40,6 +40,15 @@ public:
     
     //할 일을 중요도 순으로 나열하는 함수
     void print_todo_withimport();
+    
+    //할 일 리스트의 요소를 삭제하는 함수
+    void remove_todo(int number);
+    
+    //할 일 리스트의 요소를 추가하는 함수
+    void add_todo(std::string new_todo);
+    
+    //입력을 받는 함수
+    void input_handle();
 };
 
 #endif /* handler_hpp */

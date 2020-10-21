@@ -49,3 +49,75 @@ void handler::print_todo_withimport(){
         }
     }
 }
+
+void handler::remove_todo(int number){
+    //범위체크
+    if(number >= list_size || number < 0){
+        std::cout<<"범위오류!"<<std::endl;
+        exit(10);
+    }
+    
+    for(int i=number; i+1<list_size; i++){
+        todo_list[i] = todo_list[i+1];
+        todo_list[i]->set_num(i+1);
+    }
+    
+    list_size--;
+}
+
+void handler::add_todo(std::string new_todo){
+    todo_list[list_size] = new work(list_size, new_todo);
+    
+    std::cout<<"중요한 정도와 긴급한 정도를 입력하시겠습니끼? 입력하지 않으시면 중간단계로 설정됩니다. (각각 모두 1에서 3까지 입력 가능합니다.) >> ";
+    int buffer;
+    std::cin>>buffer;
+    
+    if(buffer)
+}
+
+void handler::input_handle(){
+    std::cout<<"할 일을 중요도 순으로 나열하려면 \"중요\"를, 긴급한 순으로 나열하려면 \"긴급\"을 입력하십시오. 다시 번호순으로 나열하려면 \"번호\"를 입력하시오. "<<std::endl;
+    std::cout<<"할 일 리스트에서 삭제하려면 해당 요소의 번호를 입력하시오. "<<std::endl;
+    std::cout<<"할 일을 추가하려면 할 일을 입력하시오. "<<std::endl;
+    
+    print_todo_withnumber();
+    
+    while (true) {
+        
+        std::cout<<">>";
+        std::string buffer;
+        getline(cin, buffer);
+        
+        //문자열이 입력된다면
+        if(atoi(buffer.c_str()) == 0 && buffer.compare("0") != 0){
+            std::cout<<"efefefef"<<buffer<<std::endl;
+            if(buffer == "importance"){
+                print_todo_withimport();
+            }
+            else if (buffer == "urgency"){
+                print_todo_withurgen();
+            }
+            else if (buffer == "number"){
+                print_todo_withnumber();
+            }
+            else{
+                //할 일이 입력됨.
+                
+            }
+        }
+        //입력된 번호가 범위 내 번호라면
+        else if(buffer.compare("0") != 0 && (atoi(buffer.c_str()) <= list_size && atoi(buffer.c_str()) > 0)){
+            remove_todo(atoi(buffer.c_str())-1);
+            std::cout<<atoi(buffer.c_str())<<"번 할 일이 삭제되었습니다."<<std::endl;
+            print_todo_withnumber();
+        }
+        else if(buffer == "0"){
+            std::cout<<"프로그램을 종료합니다."<<std::endl;
+            break;
+        }
+        else{
+            std::cout<<"잘못된 입력입니다."<<std::endl;
+        }
+        continue;
+    }
+}

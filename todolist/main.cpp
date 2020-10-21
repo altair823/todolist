@@ -11,10 +11,8 @@
 
 int main(int argc, const char * argv[]) {
     
-    handler a;
-    a.read_todo();
-    a.print_todo_withnumber();
-    a.print_todo_withurgen();
-    a.print_todo_withimport();
+    handler program;
+    program.read_todo();
+    program.input_handle();
 
 }

@@ -34,6 +34,11 @@ void work::set_urgency(int urgency_num){ work_urgency = urgency_num; }
 void work::set_importance(int importance_num){work_importance = importance_num; }
 void work::set_todo(std::string todo){ work_string = todo; }
 
+int work::put_num(){ return work_number; }
+std::string work::put_todo(){ return work_string; }
+int work::put_urgency(){return work_urgency;}
+int work::put_importance(){return work_importance;}
+
 void work::test_print(){
     std::cout<<work_number<<" - "<<work_string<<" - "<<work_urgency<<" - "<<work_importance<<std::endl;
 }

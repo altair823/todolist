@@ -17,6 +17,9 @@ class handler{
     //할 일을 저장할 포인트 리스트
     work* todo_list[MAX_TODO];
     
+    //할 일 리스트의 크기
+    int list_size;
+    
     //파일 입출력을 담당할 멤버
     file_stream save_file;
     
@@ -26,7 +29,17 @@ class handler{
 public:
     handler();
     
+    //파일에 저장된 할 일 리스트를 모두 불러오는 함수
     void read_todo();
+    
+    //할 일 리스트를 인덱스 순으로 나열하는 함수
+    void print_todo_withnumber();
+    
+    //할 일을 긴급도 순으로 나열하는 함수
+    void print_todo_withurgen();
+    
+    //할 일을 중요도 순으로 나열하는 함수
+    void print_todo_withimport();
 };
 
 #endif /* handler_hpp */

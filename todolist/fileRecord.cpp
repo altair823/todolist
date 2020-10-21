@@ -10,7 +10,6 @@
 
 //파일을 열고 닫을 인스턴스가 처음 만들어지면 파일의 존재여부와 그 비밀번호를 체크한다.
 file_stream::file_stream(){
-    current_cursor = 0;
     save_file = openfile();
     password_confirm();
     
@@ -44,6 +43,16 @@ void file_stream::password_confirm(){
         std::cout<<"password incorrect!"<<std::endl;
         exit(10);
     }
+}
+
+int file_stream::read_list_size(){
+    std::string buffer;
+    std::getline(save_file, buffer, ':');
+    
+    int size;
+    save_file>>size;
+    //std::cout<<size<<std::endl;
+    return size;
 }
 
 work file_stream::readline_todo(){

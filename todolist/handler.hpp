@@ -14,6 +14,9 @@
 
 class handler{
     
+    //할 일을 저장할 포인트 리스트
+    work* todo_list[MAX_TODO];
+    
     //파일 입출력을 담당할 멤버
     file_stream save_file;
     
@@ -23,6 +26,7 @@ class handler{
 public:
     handler();
     
+    void read_todo();
 };
 
 #endif /* handler_hpp */

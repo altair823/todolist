@@ -27,7 +27,9 @@ private:
     std::string work_string;
 public:
     
+    work();
     work(int number, std::string todo, int urgency = 2, int importance = 2);
+    work(const work &ref);
     
     //할 일을 분류하기 위한 기본적인 정보를 저장하는 함수
     void set_num(int);

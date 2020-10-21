@@ -10,11 +10,8 @@
 
 
 int main(int argc, const char * argv[]) {
-    work a(1, "tsetname");
-    a.set_num(1);
-    a.set_todo("test");
-    a.test_print();
     
-    handler();
+    handler a;
+    a.read_todo();
 
 }

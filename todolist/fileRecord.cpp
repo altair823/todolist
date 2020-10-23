@@ -73,23 +73,50 @@ work file_stream::readline_todo(){
     
     //할 일의 중요도와 긴급도를 저장
     save_file>> number;
-    a_todo.set_urgency(number);
-    save_file>> number;
     a_todo.set_importance(number);
+    save_file>> number;
+    a_todo.set_urgency(number);
     
     //a_todo.test_print();
     
     return a_todo;
 }
 
-void file_stream::write_list_file(){
-    std::cout<<"test"<<std::endl;
-    /*
-    std::ofstream ft;
-    ft.open(file_path, std::ios::out);
+
+
+void file_stream::write_initial_file(int list_size){
+    save_file.close();
+    save_file.open(file_path, std::ios::out);
     
-    ft.write("test", 4);
+    //비밀번호를 파일에 저장
+    save_file.write(security().put_password().c_str(), security().put_password().size());
+    save_file.write("\n", 1);
+    
+    //리스트의 개수를 저장
+    save_file.write("list size: ", 11);
+    save_file.write(std::to_string(list_size).c_str(), 1);
+    save_file.write("\n", 1);
+    
+    /*
+    save_file.close();
+    save_file.open(file_path);
+     */
+}
+
+void file_stream::write_todo_flie(work todo){
+    /*
+    save_file.close();
+    save_file.open(file_path, std::ios::out);
      */
     
-    save_file.write("test", 5);
+    save_file.write(std::to_string(todo.put_num()).c_str(), 1);
+    save_file.write(". <", 3);
+    save_file.write(todo.put_todo().c_str(), todo.put_todo().size());
+    save_file.write("> ", 2);
+    save_file.write(std::to_string(todo.put_importance()).c_str(), 1);
+    save_file.write(" ", 1);
+    save_file.write(std::to_string(todo.put_urgency()).c_str(), 1);
+    save_file.write("\n", 1);
+    
+    
 }

@@ -109,6 +109,7 @@ void handler::input_handle(){
     std::cout<<"할 일을 중요도 순으로 나열하려면 \"중요\"를, 긴급한 순으로 나열하려면 \"긴급\"을 입력하십시오. 다시 번호순으로 나열하려면 \"번호\"를 입력하시오. "<<std::endl;
     std::cout<<"할 일 리스트에서 삭제하려면 해당 요소의 번호를 입력하시오. "<<std::endl;
     std::cout<<"할 일을 추가하려면 할 일을 입력하시오. "<<std::endl;
+    std::cout<<"프로그램을 저장하고 종료하려면 0을 입력하시오"<<std::endl;
     std::cout<<"\">>\" 표시가 나타난 이후에 입력하시오. 표시가 나타나지 않는다면 엔터를 입력하시오."<<std::endl;
     
     print_todo_withnumber();
@@ -144,12 +145,16 @@ void handler::input_handle(){
             print_todo_withnumber();
         }
         else if(buffer == "0"){
-            save_file.write_list_file();
+            save_file.write_initial_file(list_size);
+            for(int i=0; i<list_size; i++){
+                save_file.write_todo_flie(*todo_list[i]);
+            }
             std::cout<<"프로그램을 종료합니다."<<std::endl;
             break;
         }
         else{
             std::cout<<"잘못된 입력입니다."<<std::endl;
+            print_todo_withnumber();
         }
         cin.clear();
         cin.ignore();

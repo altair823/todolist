@@ -8,7 +8,7 @@
 #include "common_declaration.hpp"
 
 security::security(){
-    password = "823eric!@";
+    password = PASSWORD;
 }
 
 bool security::verify_password(std::string word){
@@ -18,4 +18,8 @@ bool security::verify_password(std::string word){
     else{
         return false;
     }
+}
+
+std::string security::put_password(){
+    return password;
 }

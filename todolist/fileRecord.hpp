@@ -32,6 +32,9 @@ public:
     
     //파일에 작성된 할 일 리스트들을 읽어오는 함수
     work readline_todo();
+    
+    //지금까지 작성된 할 일 리스트를 파일에 작성하는 함수
+    void write_list_file();
 };
 
 

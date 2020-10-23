@@ -66,19 +66,50 @@ void handler::remove_todo(int number){
 }
 
 void handler::add_todo(std::string new_todo){
-    todo_list[list_size] = new work(list_size, new_todo);
+    todo_list[list_size] = new work(list_size+1, new_todo);
     
-    std::cout<<"중요한 정도와 긴급한 정도를 입력하시겠습니끼? 입력하지 않으시면 중간단계로 설정됩니다. (각각 모두 1에서 3까지 입력 가능합니다.) >> ";
-    int buffer;
-    std::cin>>buffer;
+    while (true) {
+        
+        std::cout<<"중요한 정도를 입력하십시오. (1에서 3까지 입력 가능합니다.) >> ";
+        int buffer = 0;
+        std::cin>>buffer;
+        
+        if(buffer<1 || buffer>3){
+            cout<<"잘못된 입력입니다. "<<endl;
+            continue;
+        }
+        else{
+            todo_list[list_size]->set_importance(buffer);
+            //cout<<todo_list[list_size]->put_importance()<<endl;
+            break;
+        }
+    }
     
-    if(buffer)
+    while (true) {
+        
+        std::cout<<"긴급한 정도를 입력하십시오. (1에서 3까지 입력 가능합니다.) >> ";
+        int buffer = 0;
+        std::cin>>buffer;
+        
+        if(buffer<1 || buffer>3){
+            cout<<"잘못된 입력입니다. "<<endl;
+            continue;
+        }
+        else{
+            todo_list[list_size]->set_urgency(buffer);
+            //cout<<todo_list[list_size]->put_urgency()<<endl;
+            break;
+        }
+    }
+    
+    list_size++;
 }
 
 void handler::input_handle(){
     std::cout<<"할 일을 중요도 순으로 나열하려면 \"중요\"를, 긴급한 순으로 나열하려면 \"긴급\"을 입력하십시오. 다시 번호순으로 나열하려면 \"번호\"를 입력하시오. "<<std::endl;
     std::cout<<"할 일 리스트에서 삭제하려면 해당 요소의 번호를 입력하시오. "<<std::endl;
     std::cout<<"할 일을 추가하려면 할 일을 입력하시오. "<<std::endl;
+    std::cout<<"\">>\" 표시가 나타난 이후에 입력하시오. 표시가 나타나지 않는다면 엔터를 입력하시오."<<std::endl;
     
     print_todo_withnumber();
     
@@ -88,9 +119,9 @@ void handler::input_handle(){
         std::string buffer;
         getline(cin, buffer);
         
+        
         //문자열이 입력된다면
-        if(atoi(buffer.c_str()) == 0 && buffer.compare("0") != 0){
-            std::cout<<"efefefef"<<buffer<<std::endl;
+        if(atoi(buffer.c_str()) == 0 && buffer.compare("0") != 0 && buffer != ""){
             if(buffer == "importance"){
                 print_todo_withimport();
             }
@@ -102,6 +133,7 @@ void handler::input_handle(){
             }
             else{
                 //할 일이 입력됨.
+                add_todo(buffer);
                 
             }
         }
@@ -112,12 +144,15 @@ void handler::input_handle(){
             print_todo_withnumber();
         }
         else if(buffer == "0"){
+            save_file.write_list_file();
             std::cout<<"프로그램을 종료합니다."<<std::endl;
             break;
         }
         else{
             std::cout<<"잘못된 입력입니다."<<std::endl;
         }
+        cin.clear();
+        cin.ignore();
         continue;
     }
 }

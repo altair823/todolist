@@ -81,3 +81,15 @@ work file_stream::readline_todo(){
     
     return a_todo;
 }
+
+void file_stream::write_list_file(){
+    std::cout<<"test"<<std::endl;
+    /*
+    std::ofstream ft;
+    ft.open(file_path, std::ios::out);
+    
+    ft.write("test", 4);
+     */
+    
+    save_file.write("test", 5);
+}

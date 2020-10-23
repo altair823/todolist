@@ -135,7 +135,7 @@ void handler::input_handle(){
             else{
                 //할 일이 입력됨.
                 add_todo(buffer);
-                
+                print_todo_withnumber();
             }
         }
         //입력된 번호가 범위 내 번호라면
